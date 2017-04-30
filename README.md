@@ -5,6 +5,6 @@ a basic demo of augmented reality similar to that in Pokemon Go.
 
 By utilizing the [Expo SDK](https://docs.expo.io/versions/latest/introduction/index.html), this app is compatible with both iOS and Android.
 
-The simplest way to try it out on your device is to install Exponent from the
-app store and open this project's link in Exponent:
-https://exp.host/@traviskn/pokemongo
+The simplest way to try it out on your device is to install Expo from the
+app store and open this project's link in Expo
+https://expo.io/@traviskn/pokemongo
