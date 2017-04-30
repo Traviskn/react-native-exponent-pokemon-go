@@ -12,12 +12,11 @@ import {
   DeviceEventEmitter
 } from 'react-native'
 import Exponent, {
+  BarCodeScanner,
   Permissions,
-  Components,
   Gyroscope
-} from 'exponent'
+} from 'expo'
 
-const { BarCodeScanner } = Components
 const { height, width } = Dimensions.get('window')
 
 
@@ -118,7 +117,7 @@ export default class Example extends React.Component {
     const pokemonX = (width/2) + this.pokemonPosition.x
     const pokemonY = (height/3) + this.pokemonPosition.y
 
-   return ((Math.abs((pokeballX - pokemonX)) < 50) && (Math.abs((pokeballY - pokemonY)) < 50))
+    return ((Math.abs((pokeballX - pokemonX)) < 50) && (Math.abs((pokeballY - pokemonY)) < 50))
   }
 
   render() {

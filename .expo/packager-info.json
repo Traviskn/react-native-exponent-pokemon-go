@@ -1,0 +1,9 @@
+{
+  "exponentServerNgrokUrl": null,
+  "packagerNgrokUrl": "https://packager.u5-jci.traviskn.pokemongo.exp.direct",
+  "ngrokPid": 3950,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 3936,
+  "expoServerNgrokUrl": "https://u5-jci.traviskn.pokemongo.exp.direct"
+}

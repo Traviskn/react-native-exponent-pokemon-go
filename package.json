@@ -1,14 +1,14 @@
 {
   "name": "pokemongo",
-  "version": "0.0.0",
-  "description": "Hello Exponent!",
+  "version": "0.0.1",
+  "description": "Simple Pokemon Go Clone",
   "author": null,
   "private": true,
   "main": "main.js",
   "dependencies": {
-    "@exponent/vector-icons": "~4.0.0",
-    "exponent": "^13.1.0",
-    "react": "~15.4.0",
-    "react-native": "https://github.com/exponent/react-native/archive/sdk-13.0.3.tar.gz"
+    "@expo/vector-icons": "~4.0.0",
+    "expo": "^16.0.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-16.0.0.tar.gz"
   }
 }

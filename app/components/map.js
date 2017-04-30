@@ -6,11 +6,9 @@ import {
   Text,
   Image
 } from 'react-native'
-import { Components  } from 'exponent'
+import { MapView } from 'expo'
 import { throttle } from 'lodash'
 import generateRandomPokemon from '../utils/randomPokemon'
-
-const { MapView } = Components
 
 const COUNT = 3
 const THROTTLE = 3000

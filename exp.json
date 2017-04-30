@@ -1,9 +1,9 @@
 {
   "name": "pokemongo",
-  "description": "An empty new project",
+  "description": "A simple Pokemon Go clone.",
   "slug": "pokemongo",
   "privacy": "public",
-  "sdkVersion": "13.0.0",
+  "sdkVersion": "16.0.0",
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
