@@ -6,12 +6,13 @@ import {
   Text,
   Image
 } from 'react-native'
-import { MapView } from 'expo'
+import { MapView, Permissions, Location } from 'expo'
 import { throttle } from 'lodash'
 import generateRandomPokemon from '../utils/randomPokemon'
 
-const COUNT = 3
-const THROTTLE = 3000
+const THROTTLE = 2000
+const latitudeDelta = 0.0100
+const longitudeDelta = 0.0080
 
 export default class CustomMap extends React.Component {
   constructor(props) {
@@ -20,18 +21,47 @@ export default class CustomMap extends React.Component {
     this.state = {
       trainer: {
         latitude: 0,
-        longitude: 0
+        longitude: 0,
+        latitudeDelta,
+        longitudeDelta,
       },
       pokemon: []
     }
 
+    this.locationWatcher = null
+
     this.spawnWildPokemon = throttle(this.spawnWildPokemon.bind(this), THROTTLE)
-    this.onTrainerMoved = this.onTrainerMoved.bind(this)
   }
 
-  onTrainerMoved(trainer) {
-    this.setState({ trainer })
-    this.spawnWildPokemon()
+  componentWillMount() {
+    Permissions.askAsync(Permissions.LOCATION)
+      .then(permission => {
+        if(permission.status === 'granted') {
+          this.locationWatcher = Location.watchPositionAsync({
+            enableHighAccuracy: true,
+            timeInterval: 500,
+          }, (location) => {
+            this.setState({
+              trainer: {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta,
+                longitudeDelta,
+              }
+            })
+
+            this.spawnWildPokemon()
+          })
+        }
+        else {
+          console.warn('PERMISSION DENIED')
+        }
+      })
+      .catch(e => console.error(e))
+  }
+
+  componentWillUnmount() {
+    this.locationWatcher && this.locationWatcher.remove()
   }
 
   spawnWildPokemon() {
@@ -53,9 +83,7 @@ export default class CustomMap extends React.Component {
       <View style={styles.container}>
         <MapView
           style={styles.map}
-          onRegionChange={this.onTrainerMoved}
-          showsUserLocation
-          followsUserLocation
+          region={this.state.trainer}
           scrollEnabled={false}
           showsTraffic={false}
           showsIndoors={false}

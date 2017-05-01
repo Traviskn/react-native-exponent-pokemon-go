@@ -7,4 +7,4 @@ By utilizing the [Expo SDK](https://docs.expo.io/versions/latest/introduction/in
 
 The simplest way to try it out on your device is to install Expo from the
 app store and open this project's link in Expo
-https://expo.io/@traviskn/pokemongo
+https://exp.host/@traviskn/pokemongo

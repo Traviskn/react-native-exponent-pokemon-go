@@ -11,7 +11,7 @@ import {
   Dimensions,
   DeviceEventEmitter
 } from 'react-native'
-import Exponent, {
+import {
   BarCodeScanner,
   Permissions,
   Gyroscope
