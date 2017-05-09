@@ -10,7 +10,7 @@ import { MapView, Permissions, Location } from 'expo'
 import { throttle } from 'lodash'
 import generateRandomPokemon from '../utils/randomPokemon'
 
-const THROTTLE = 2000
+const INTERVAL= 4000
 const latitudeDelta = 0.0100
 const longitudeDelta = 0.0080
 
@@ -29,11 +29,12 @@ export default class CustomMap extends React.Component {
     }
 
     this.locationWatcher = null
+    this.spawnInterval = null
 
-    this.spawnWildPokemon = throttle(this.spawnWildPokemon.bind(this), THROTTLE)
+    this.spawnWildPokemon = this.spawnWildPokemon.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Permissions.askAsync(Permissions.LOCATION)
       .then(permission => {
         if(permission.status === 'granted') {
@@ -49,9 +50,9 @@ export default class CustomMap extends React.Component {
                 longitudeDelta,
               }
             })
-
-            this.spawnWildPokemon()
           })
+
+          this.spawnInterval = setInterval(this.spawnWildPokemon, INTERVAL)
         }
         else {
           console.warn('PERMISSION DENIED')
@@ -62,6 +63,7 @@ export default class CustomMap extends React.Component {
 
   componentWillUnmount() {
     this.locationWatcher && this.locationWatcher.remove()
+    this.spawnInterval && clearInterval(this.spawnInterval)
   }
 
   spawnWildPokemon() {
